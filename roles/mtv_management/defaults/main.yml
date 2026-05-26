@@ -147,6 +147,23 @@ mtv_management_storage_map_overrides: [
 #   include: true
 ]
 
+mtv_management_multiple_storage_maps_overrides: {}
+# map_name1:
+# - id: <datastore_id>
+#   storageClass: <name of the storage class>
+#   exclude: true
+#   include: true
+# - id: <datastore_id>
+#   storageClass: <name of the storage class>
+#   exclude: true
+#   include: true
+# map_name2:
+# - id: <datastore_id>
+#   storageClass: <name of the storage class>
+#   exclude: true
+#   include: true
+
+
 # title: MTV Network Map Overrides
 # required: False
 # description: Overrides for the network map

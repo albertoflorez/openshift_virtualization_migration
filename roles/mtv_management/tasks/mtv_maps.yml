@@ -35,9 +35,22 @@
     quiet: true
     fail_msg: "Destination Provider with name '{{ mtv_management_destination_target }}' not found in namespace '{{ mtv_management_provider_namespace }}'" # noqa: yaml[line-length]
 
+- name: mtv_maps | Configure MTV Storage Maps (Multiple)
+  ansible.builtin.include_tasks: _mtv_storage_map.yml
+  loop: "{{ mtv_management_multiple_storage_maps_overrides | dict2items }}"
+  vars:
+    defined_storage_map_name: "{{ item.key }}"
+    mtv_management_storage_map_overrides: "{{ item.value }}"
+  when: 
+    - mtv_management_map_storage is defined and mtv_management_map_storage | bool
+    - mtv_management_multiple_storage_maps_overrides is defined
+    - mtv_management_multiple_storage_maps_overrides | length > 0
+
 - name: mtv_maps | Configure MTV Storage Maps
   ansible.builtin.include_tasks: _mtv_storage_map.yml
-  when: mtv_management_map_storage is defined and mtv_management_map_storage | bool
+  when: 
+    - mtv_management_map_storage is defined and mtv_management_map_storage | bool
+    - mtv_management_multiple_storage_maps_overrides is not defined or mtv_management_multiple_storage_maps_overrides | length == 0
 
 - name: mtv_maps | Configure MTV Network Map
   ansible.builtin.include_tasks: _mtv_network_map.yml
