@@ -430,6 +430,10 @@ aap_seed_controller_credential_types:
         - id: provider_name
           type: string
           label: Provider source
+        - id: esxi_host_list
+          type: string
+          label: ESXi configurations for migration network
+          multiline: true
       required:
         - name
         - host
@@ -446,6 +450,7 @@ aap_seed_controller_credential_types:
         vmware_vddk_init_image_password: "{% raw %}{  { vddk_init_image_password }}{% endraw %}"
         vmware_vddk_init_image_credentials_secret: "{% raw %}{  { vddk_init_image_credentials_secret }}{% endraw %}"
         provider: "{% raw %}{  { provider_name }}{% endraw %}"
+        vmware_esxi_hosts: "{% raw %}{  { esxi_host_list }}{% endraw %}"
       env:
         VMWARE_HOST: "{% raw %}{  { host }}{% endraw %}"
         VMWARE_USER: "{% raw %}{  { username }}{% endraw %}"

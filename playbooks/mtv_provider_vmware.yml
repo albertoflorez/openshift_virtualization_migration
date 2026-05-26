@@ -21,4 +21,5 @@
             secretRef: "{{ vmware_credentials_secret_ref | default(omit, true) }}"
             vddk:
               image: "{{ vmware_vddk_init_image | default(omit, true) }}"
+            esxi_hosts: "{{ vmware_esxi_hosts | default('[]', true) | from_json }}"
 ...

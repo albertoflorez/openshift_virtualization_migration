@@ -85,4 +85,46 @@
   until:
     - mtv_management_r_vmware_provider.result is defined
     - mtv_management_r_vmware_provider.result | length > 0
+
+- name: _mtv_provider_vmware | Create VMware Host credentials secret
+  redhat.openshift.k8s:
+    state: present
+    definition:
+      apiVersion: v1
+      kind: Secret
+      type: Opaque
+      metadata: 
+        name: "{{ mtv_management_populated_vmware_target['name'] }}-{{ vmware_esxi.id }}-secret"
+        namespace: "{{ mtv_management_provider_namespace }}"
+      data:
+        insecureSkipVerify: "{{ (vmware_esxi.insecureSkipTlsVerify | default(mtv_management_vmware_provider_insecure_skip_tls_verify) | bool) | b64encode if 'certificate' not in vmware_esxi or vmware_esxi['certificate'] | default('') | trim | length == 0 else false | b64encode }}" # noqa: yaml[line-length]
+        password: "{{ vmware_esxi.password | b64encode }}"
+        user: "{{ vmware_esxi.user | b64encode }}"
+        ip: "{{ vmware_esxi.ip | b64encode }}"
+        provider: "{{ mtv_management_populated_vmware_target['name'] | b64encode }}"
+    apply: true
+  loop: "{{ mtv_management_populated_vmware_target.esxi_hosts | default([]) }}"
+  loop_control:
+    loop_var: vmware_esxi
+  when: 
+    - mtv_management_populated_vmware_target.esxi_hosts is defined
+    - mtv_management_populated_vmware_target.esxi_hosts | length > 0
+
+- name: _mtv_provider_vmware | Create VMware Host resource
+  redhat.openshift.k8s:
+    state: present
+    definition: "{{ (lookup('ansible.builtin.template', 'vmware_esxi_skeleton.yml.j2') | from_yaml) }}"
+    apply: true
+  register: mtv_management_r_vmware_esxi
+  retries: 100
+  delay: 10
+  until:
+    - mtv_management_r_vmware_esxi.result is defined
+    - mtv_management_r_vmware_esxi.result | length > 0
+  loop: "{{ mtv_management_populated_vmware_target.esxi_hosts | default([]) }}"
+  loop_control:
+    loop_var: vmware_esxi
+  when: 
+    - mtv_management_populated_vmware_target.esxi_hosts is defined
+    - mtv_management_populated_vmware_target.esxi_hosts | length > 0
 ...
