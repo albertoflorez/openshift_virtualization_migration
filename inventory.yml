@@ -154,39 +154,38 @@ migration_spoke:
       #     storage and networking>
 
       ## Example Migration Target (uncomment to use as a baseline)
-        - name: vmware-2w7dj
-          type: vmware
-          host: vcsrs00-vc.demo.example.com
-          username: changeme
-          password: changeme
-          vddk:
-            image: registry.example.com/openshift-virtualization-migration-vddk:latest
-            username: "{{ container_username }}"
-            password: "{{ container_password }}"
-          sdkEndpoint: /sdk
-          insecureSkipTlsVerify: true
-          mapping:
-            create: true
-          esxi_hosts:
-            - id: host-1
-              password: pass1
-              ip: 10.10.10.123
-              user: root
-            - id: host-2
-              password: pass2
-              ip: 10.10.10.124
-              user: root
+      #  - name: vmware-2w7dj
+      #    type: vmware
+      #    host: vcsrs00-vc.demo.example.com
+      #    username: changeme
+      #    password: changeme
+      #    vddk:
+      #      image: registry.example.com/openshift-virtualization-migration-vddk:latest
+      #      username: "{{ container_username }}"
+      #      password: "{{ container_password }}"
+      #    sdkEndpoint: /sdk
+      #    insecureSkipTlsVerify: true
+      #    mapping:
+      #      create: true
+      #    esxi_hosts:
+      #      - id: host-1
+      #        password: pass1
+      #        ip: 10.10.10.123
+      #        user: root
+      #      - id: host-2
+      #        password: pass2
+      #        ip: 10.10.10.123
+      #        user: root
 
       ## Example Migration Target (uncomment to use as a baseline)
-        - name: rhev-target-1 # Required
-          type: ovirt
-          host: rhev.demo.example.com
-          username: changeme
-          sdkEndpoint: /ovirt-engine/api #if not provided automatically will be added
-          password: changeme
-          insecureSkipTlsVerify: true
-          mapping:
-             create: true
-            
+      #  - name: rhev-target-1 # Required
+      #    type: ovirt
+      #    host: rhev.demo.example.com
+      #    username: changeme
+      #    sdkEndpoint: /ovirt-engine/api #if not provided automatically will be added
+      #    password: changeme
+      #    insecureSkipTlsVerify: true
+      #    mapping:
+      #      create: true
 
 ...

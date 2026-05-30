@@ -86,6 +86,22 @@
     - mtv_management_r_vmware_provider.result is defined
     - mtv_management_r_vmware_provider.result | length > 0
 
+- name: _mtv_provider_vmware | Validate ESXi host properties
+  ansible.builtin.assert:
+    that:
+      - "'id' in vmware_esxi"
+      - "'ip' in vmware_esxi"
+      - "'user' in vmware_esxi"
+      - "'password' in vmware_esxi"
+    quiet: true
+    fail_msg: "ESXi host entry '{{ vmware_esxi.id | default('UNKNOWN') }}' is missing required fields (id, ip, user, password)"
+  loop: "{{ mtv_management_populated_vmware_target.esxi_hosts | default([]) }}"
+  loop_control:
+    loop_var: vmware_esxi
+  when:
+    - mtv_management_populated_vmware_target.esxi_hosts is defined
+    - mtv_management_populated_vmware_target.esxi_hosts | length > 0
+
 - name: _mtv_provider_vmware | Create VMware Host credentials secret
   redhat.openshift.k8s:
     state: present
@@ -93,7 +109,7 @@
       apiVersion: v1
       kind: Secret
       type: Opaque
-      metadata: 
+      metadata:
         name: "{{ mtv_management_populated_vmware_target['name'] }}-{{ vmware_esxi.id }}-secret"
         namespace: "{{ mtv_management_provider_namespace }}"
       data:
@@ -106,7 +122,7 @@
   loop: "{{ mtv_management_populated_vmware_target.esxi_hosts | default([]) }}"
   loop_control:
     loop_var: vmware_esxi
-  when: 
+  when:
     - mtv_management_populated_vmware_target.esxi_hosts is defined
     - mtv_management_populated_vmware_target.esxi_hosts | length > 0
 
