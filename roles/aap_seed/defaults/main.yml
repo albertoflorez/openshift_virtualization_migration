@@ -434,6 +434,7 @@ aap_seed_controller_credential_types:
           type: string
           label: ESXi configurations for migration network
           multiline: true
+          secret: true
       required:
         - name
         - host
