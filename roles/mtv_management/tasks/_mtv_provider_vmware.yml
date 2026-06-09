@@ -140,7 +140,7 @@
   loop: "{{ mtv_management_populated_vmware_target.esxi_hosts | default([]) }}"
   loop_control:
     loop_var: vmware_esxi
-  when: 
+  when:
     - mtv_management_populated_vmware_target.esxi_hosts is defined
     - mtv_management_populated_vmware_target.esxi_hosts | length > 0
 ...

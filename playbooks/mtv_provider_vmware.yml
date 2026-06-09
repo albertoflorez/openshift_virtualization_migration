@@ -13,7 +13,7 @@
         - name: Fail gracefully on invalid JSON
           ansible.builtin.fail:
             msg: >-
-              Validation Error: The 'esxi_hosts' input provided is not valid JSON. 
+              Validation Error: The 'esxi_hosts' input provided is not valid JSON.
               Please verify the format in your AAP credential or variable input.
 
     - name: MTV VMware Provider
