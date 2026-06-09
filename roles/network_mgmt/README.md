@@ -10,15 +10,19 @@ This role performs network management in two modes: Manual and Automatic. It per
 This role supports three network bridge modes:
 
 ### 1. linux-bridge
+
 Uses CNV bridge (cnv-bridge) for network attachment. This mode requires NNCP (NodeNetworkConfigurationPolicy) to configure the bridge on worker nodes.
 
 ### 2. ovs-bridge
+
 Uses OVN-Kubernetes CNI overlay with `localnet` topology. This mode requires NNCP to configure the OVS bridge and localnet mapping on worker nodes.
 
 ### 3. ovn-layer2
+
 Uses OVN-Kubernetes CNI overlay with `layer2` topology. This mode creates isolated layer2 networks without requiring NNCP or physical node network configuration.
 
 Example NAD for ovn-layer2 mode:
+
 ```yaml
 apiVersion: k8s.cni.cncf.io/v1
 kind: NetworkAttachmentDefinition
@@ -39,6 +43,7 @@ spec:
 ```
 
 To use ovn-layer2 mode, set:
+
 ```yaml
 network_mgmt_openshift_network_bridge_mode: ovn-layer2
 network_mgmt_ovn_topology: layer2
