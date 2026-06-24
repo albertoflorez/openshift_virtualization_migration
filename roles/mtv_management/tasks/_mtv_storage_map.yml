@@ -77,7 +77,9 @@
     {{
       (mtv_destination_datastores | selectattr('id', 'in', mtv_management_mtv_allowed_datastore_ids) | list)
       if (mtv_management_mtv_allowed_datastore_ids | default([]) | length > 0)
-      else (mtv_destination_datastores | rejectattr('id', 'in', mtv_management_mtv_excluded_datastore_ids | default([])) | list)
+      else (mtv_destination_datastores
+        | rejectattr('id', 'in', mtv_management_mtv_excluded_datastore_ids | default([]))
+        | list)
       if (mtv_management_mtv_excluded_datastore_ids | default([]) | length > 0)
       else mtv_destination_datastores
     }}
@@ -94,7 +96,9 @@
     {{
       (mtv_destination_datastores | selectattr('id', 'in', mtv_management_mtv_allowed_datastore_ids) | list)
       if (mtv_management_mtv_allowed_datastore_ids | default([]) | length > 0)
-      else (mtv_destination_datastores | rejectattr('id', 'in', mtv_management_mtv_excluded_datastore_ids | default([])) | list)
+      else (mtv_destination_datastores
+        | rejectattr('id', 'in', mtv_management_mtv_excluded_datastore_ids | default([]))
+        | list)
       if (mtv_management_mtv_excluded_datastore_ids | default([]) | length > 0)
       else mtv_destination_datastores
     }}

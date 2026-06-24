@@ -5,43 +5,44 @@
 [![Semantic Versioning](https://img.shields.io/badge/semver-2.0.0-blue?style=flat-square)](https://semver.org/)
 [![License](https://img.shields.io/github/license/redhat-cop/openshift_virtualization_migration?style=flat-square)](LICENSE)
 
-## Table of Contents
+<!--TOC-->
 
-* [Description](#description)
-* [Requirements](#requirements)
-* [Installation](#installation)
-* [Documentation](#documentation)
-    * [Contributing](CONTRIBUTING.md)
-    * [Disconnected Environment](docs/disconnected_environment_guide.md)
-    * [Secure Credential Management](docs/secure_credential_management.md)
-    * [Secure Credential Practices](docs/secure_credential_practices.md)
-* [Roles](#roles)
-    * [aap_deploy](roles/aap_deploy/README.md)
-    * [aap_machine_credentials](roles/aap_machine_credentials/README.md)
-    * [aap_seed](roles/aap_seed/README.md)
-    * [bootstrap](roles/bootstrap/README.md)
-    * [create_mf_aap_token](roles/create_mf_aap_token/README.md)
-    * [mtv_management](roles/mtv_management/README.md)
-    * [mtv_migrate](roles/mtv_migrate/README.md)
-    * [network_mgmt](roles/network_mgmt/README.md)
-    * [operator_management](roles/operator_management/README.md)
-    * [validate_migration](roles/validate_migration/README.md)
-    * [vm_backup_restore](roles/vm_backup_restore/README.md)
-    * [vm_collect](roles/vm_collect/README.md)
-    * [vm_hot_plug](roles/vm_hot_plug/README.md)
-    * [vm_lifecycle](roles/vm_lifecycle/README.md)
-    * [vm_mac_address](roles/vm_mac_address/README.md)
-    * [vm_networking](roles/vm_networking/README.md)
-    * [vm_patching](roles/vm_patching/README.md)
-    * [vm_ssh](roles/vm_ssh/README.md)
-* [Use Cases](#use-cases)
-* [Testing](#testing)
-* [Release Notes](CHANGELOG.md)
-* [License](#license)
+- [Ansible for OpenShift Virtualization Migration](#ansible-for-openshift-virtualization-migration)
+  - [Description](#description)
+  - [Documentation](#documentation)
+  - [Release Notes](#release-notes)
+  - [Roles](#roles)
+  - [Requirements](#requirements)
+  - [Installation](#installation)
+  - [Use Cases](#use-cases)
+  - [Testing](#testing)
+  - [Support](#support)
+  - [License](#license)
+
+<!--TOC-->
 
 ## Description
 
 This collection enables the migration journey of Virtual Machine (VM) workloads from existing hypervisors to Red Hat OpenShift Virtualization using Ansible Automation Platform. Additionally it provides content for the management and maintenance of VM workloads within Red Hat OpenShift Virtualization.
+
+## Documentation
+
+* [Contributing Guide](CONTRIBUTING.md)
+* [Disconnected Environment Setup](docs/disconnected_environment_guide.md)
+* [Secure Credential Management](docs/secure_credential_management.md)
+* [Secure Credential Practices](docs/secure_credential_practices.md)
+
+## Release Notes
+
+See [CHANGELOG.md](CHANGELOG.md) for release history and changes.
+
+## Roles
+
+This collection includes the following roles for managing OpenShift Virtualization migrations:
+
+<!--ROLES_LIST_START-->
+
+<!--ROLES_LIST_END-->
 
 ## Requirements
 
