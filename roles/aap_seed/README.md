@@ -29,7 +29,7 @@ Description: Populates an Ansible Automation Platform instance.
 | Var          | Type         | Value       |Choices    |Required    | Title       |
 |--------------|--------------|-------------|-------------|-------------|-------------|
 | [`aap_seed_aap_channel`](defaults/main.yml#L20)   | str   | `{{ aap_channel }}` |  None  |   True  |  AAP Subscription Channel |
-| [`aap_seed_aap_credentials_create`](defaults/main.yml#L624)   | bool   | `True` |  None  |   True  |  Create AAP Credentials |
+| [`aap_seed_aap_credentials_create`](defaults/main.yml#L630)   | bool   | `True` |  None  |   True  |  Create AAP Credentials |
 | [`aap_seed_aap_execution_environment`](defaults/main.yml#L103)   | str   | `{{ aap_execution_environment }}` |  None  |   True  |  AAP Execution Environment |
 | [`aap_seed_aap_execution_environment_image`](defaults/main.yml#L108)   | str   | `{{ aap_execution_environment_image }}` |  None  |   True  |  AAP Execution Environment Image |
 | [`aap_seed_aap_instance_name`](defaults/main.yml#L25)   | str   | `{{ aap_instance_name }}` |  None  |   True  |  AAP Instance Name |
@@ -75,7 +75,7 @@ Description: Populates an Ansible Automation Platform instance.
 | [`aap_seed_container_credential_name`](defaults/main.yml#L232)   | str   | `{{ container_credential_name ¦ default('Container Registry') }}` |  None  |   True  |  AAP Container Credential Name |
 | [`aap_seed_container_host`](defaults/main.yml#L237)   | str   | `{{ container_host }}` |  None  |   True  |  AAP Container Host |
 | [`aap_seed_container_password`](defaults/main.yml#L242)   | str   | `{{ container_password }}` |  None  |   True  |  AAP Container Password |
-| [`aap_seed_container_registry_credentials_create`](defaults/main.yml#L639)   | bool   | `True` |  None  |   True  |  Create Container Registry Credentials |
+| [`aap_seed_container_registry_credentials_create`](defaults/main.yml#L645)   | bool   | `True` |  None  |   True  |  Create Container Registry Credentials |
 | [`aap_seed_container_username`](defaults/main.yml#L247)   | str   | `{{ container_username }}` |  None  |   True  |  AAP Container Username |
 | [`aap_seed_container_verify_ssl`](defaults/main.yml#L252)   | str   | `{{ container_verify_ssl ¦ default(false) }}` |  None  |   True  |  Container Verify SSL |
 | [`aap_seed_controller_configuration_async_retries`](defaults/main.yml#L81)   | int   | `60` |  None  |   True  |  Configuration Async Retries |
@@ -146,22 +146,23 @@ Description: Populates an Ansible Automation Platform instance.
 | [`aap_seed_controller_credential_types.0.organization`](defaults/main.yml#L333)   | str   | `{{ aap_seed_aap_org_name }}` |  None  |   None  |  None |
 | [`aap_seed_controller_credential_types.1`](defaults/main.yml#L385)   | dict   | `{}` |  None  |   None  |  None |
 | [`aap_seed_controller_credential_types.1.description`](defaults/main.yml#L386)   | str   | `Migration Target for VMware` |  None  |   None  |  None |
-| [`aap_seed_controller_credential_types.1.injectors`](defaults/main.yml#L437)   | dict   | `{}` |  None  |   None  |  None |
-| [`aap_seed_controller_credential_types.1.injectors.env`](defaults/main.yml#L449)   | dict   | `{}` |  None  |   None  |  None |
-| [`aap_seed_controller_credential_types.1.injectors.env.VMWARE_HOST`](defaults/main.yml#L450)   | str   | `{% raw %}{  { host }}{% endraw %}` |  None  |   None  |  None |
-| [`aap_seed_controller_credential_types.1.injectors.env.VMWARE_PASSWORD`](defaults/main.yml#L452)   | str   | `{% raw %}{  { password }}{% endraw %}` |  None  |   None  |  None |
-| [`aap_seed_controller_credential_types.1.injectors.env.VMWARE_USER`](defaults/main.yml#L451)   | str   | `{% raw %}{  { username }}{% endraw %}` |  None  |   None  |  None |
-| [`aap_seed_controller_credential_types.1.injectors.extra_vars`](defaults/main.yml#L438)   | dict   | `{}` |  None  |   None  |  None |
-| [`aap_seed_controller_credential_types.1.injectors.extra_vars.provider`](defaults/main.yml#L448)   | str   | `{% raw %}{  { provider_name }}{% endraw %}` |  None  |   None  |  None |
-| [`aap_seed_controller_credential_types.1.injectors.extra_vars.vmware_cacert`](defaults/main.yml#L441)   | str   | `{% raw %}{  { cacert }}{% endraw %}` |  None  |   None  |  None |
-| [`aap_seed_controller_credential_types.1.injectors.extra_vars.vmware_context_path`](defaults/main.yml#L442)   | str   | `{% raw %}{  { context_path }}{% endraw %}` |  None  |   None  |  None |
-| [`aap_seed_controller_credential_types.1.injectors.extra_vars.vmware_credentials_secret_ref`](defaults/main.yml#L443)   | str   | `{% raw %}{  { credentials_secret_ref }}{% endraw %}` |  None  |   None  |  None |
-| [`aap_seed_controller_credential_types.1.injectors.extra_vars.vmware_insecure_ssl`](defaults/main.yml#L440)   | str   | `{% raw %}{  { insecure_ssl }}{% endraw %}` |  None  |   None  |  None |
-| [`aap_seed_controller_credential_types.1.injectors.extra_vars.vmware_target_name`](defaults/main.yml#L439)   | str   | `{% raw %}{  { name }}{% endraw %}` |  None  |   None  |  None |
-| [`aap_seed_controller_credential_types.1.injectors.extra_vars.vmware_vddk_init_image`](defaults/main.yml#L444)   | str   | `{% raw %}{  { vddk_init_image }}{% endraw %}` |  None  |   None  |  None |
-| [`aap_seed_controller_credential_types.1.injectors.extra_vars.vmware_vddk_init_image_credentials_secret`](defaults/main.yml#L447)   | str   | `{% raw %}{  { vddk_init_image_credentials_secret }}{% endraw %}` |  None  |   None  |  None |
-| [`aap_seed_controller_credential_types.1.injectors.extra_vars.vmware_vddk_init_image_password`](defaults/main.yml#L446)   | str   | `{% raw %}{  { vddk_init_image_password }}{% endraw %}` |  None  |   None  |  None |
-| [`aap_seed_controller_credential_types.1.injectors.extra_vars.vmware_vddk_init_image_username`](defaults/main.yml#L445)   | str   | `{% raw %}{  { vddk_init_image_username }}{% endraw %}` |  None  |   None  |  None |
+| [`aap_seed_controller_credential_types.1.injectors`](defaults/main.yml#L442)   | dict   | `{}` |  None  |   None  |  None |
+| [`aap_seed_controller_credential_types.1.injectors.env`](defaults/main.yml#L455)   | dict   | `{}` |  None  |   None  |  None |
+| [`aap_seed_controller_credential_types.1.injectors.env.VMWARE_HOST`](defaults/main.yml#L456)   | str   | `{% raw %}{  { host }}{% endraw %}` |  None  |   None  |  None |
+| [`aap_seed_controller_credential_types.1.injectors.env.VMWARE_PASSWORD`](defaults/main.yml#L458)   | str   | `{% raw %}{  { password }}{% endraw %}` |  None  |   None  |  None |
+| [`aap_seed_controller_credential_types.1.injectors.env.VMWARE_USER`](defaults/main.yml#L457)   | str   | `{% raw %}{  { username }}{% endraw %}` |  None  |   None  |  None |
+| [`aap_seed_controller_credential_types.1.injectors.extra_vars`](defaults/main.yml#L443)   | dict   | `{}` |  None  |   None  |  None |
+| [`aap_seed_controller_credential_types.1.injectors.extra_vars.provider`](defaults/main.yml#L453)   | str   | `{% raw %}{  { provider_name }}{% endraw %}` |  None  |   None  |  None |
+| [`aap_seed_controller_credential_types.1.injectors.extra_vars.vmware_cacert`](defaults/main.yml#L446)   | str   | `{% raw %}{  { cacert }}{% endraw %}` |  None  |   None  |  None |
+| [`aap_seed_controller_credential_types.1.injectors.extra_vars.vmware_context_path`](defaults/main.yml#L447)   | str   | `{% raw %}{  { context_path }}{% endraw %}` |  None  |   None  |  None |
+| [`aap_seed_controller_credential_types.1.injectors.extra_vars.vmware_credentials_secret_ref`](defaults/main.yml#L448)   | str   | `{% raw %}{  { credentials_secret_ref }}{% endraw %}` |  None  |   None  |  None |
+| [`aap_seed_controller_credential_types.1.injectors.extra_vars.vmware_esxi_hosts`](defaults/main.yml#L454)   | str   | `{% raw %}{  { esxi_host_list }}{% endraw %}` |  None  |   None  |  None |
+| [`aap_seed_controller_credential_types.1.injectors.extra_vars.vmware_insecure_ssl`](defaults/main.yml#L445)   | str   | `{% raw %}{  { insecure_ssl }}{% endraw %}` |  None  |   None  |  None |
+| [`aap_seed_controller_credential_types.1.injectors.extra_vars.vmware_target_name`](defaults/main.yml#L444)   | str   | `{% raw %}{  { name }}{% endraw %}` |  None  |   None  |  None |
+| [`aap_seed_controller_credential_types.1.injectors.extra_vars.vmware_vddk_init_image`](defaults/main.yml#L449)   | str   | `{% raw %}{  { vddk_init_image }}{% endraw %}` |  None  |   None  |  None |
+| [`aap_seed_controller_credential_types.1.injectors.extra_vars.vmware_vddk_init_image_credentials_secret`](defaults/main.yml#L452)   | str   | `{% raw %}{  { vddk_init_image_credentials_secret }}{% endraw %}` |  None  |   None  |  None |
+| [`aap_seed_controller_credential_types.1.injectors.extra_vars.vmware_vddk_init_image_password`](defaults/main.yml#L451)   | str   | `{% raw %}{  { vddk_init_image_password }}{% endraw %}` |  None  |   None  |  None |
+| [`aap_seed_controller_credential_types.1.injectors.extra_vars.vmware_vddk_init_image_username`](defaults/main.yml#L450)   | str   | `{% raw %}{  { vddk_init_image_username }}{% endraw %}` |  None  |   None  |  None |
 | [`aap_seed_controller_credential_types.1.inputs`](defaults/main.yml#L389)   | dict   | `{}` |  None  |   None  |  None |
 | [`aap_seed_controller_credential_types.1.inputs.fields`](defaults/main.yml#L390)   | list   | `[]` |  None  |   None  |  None |
 | [`aap_seed_controller_credential_types.1.inputs.fields.0`](defaults/main.yml#L391)   | dict   | `{}` |  None  |   None  |  None |
@@ -185,6 +186,12 @@ Description: Populates an Ansible Automation Platform instance.
 | [`aap_seed_controller_credential_types.1.inputs.fields.12.id`](defaults/main.yml#L430)   | str   | `provider_name` |  None  |   None  |  None |
 | [`aap_seed_controller_credential_types.1.inputs.fields.12.label`](defaults/main.yml#L432)   | str   | `Provider source` |  None  |   None  |  None |
 | [`aap_seed_controller_credential_types.1.inputs.fields.12.type`](defaults/main.yml#L431)   | str   | `string` |  None  |   None  |  None |
+| [`aap_seed_controller_credential_types.1.inputs.fields.13`](defaults/main.yml#L433)   | dict   | `{}` |  None  |   None  |  None |
+| [`aap_seed_controller_credential_types.1.inputs.fields.13.id`](defaults/main.yml#L433)   | str   | `esxi_host_list` |  None  |   None  |  None |
+| [`aap_seed_controller_credential_types.1.inputs.fields.13.label`](defaults/main.yml#L435)   | str   | `ESXi configurations for migration network` |  None  |   None  |  None |
+| [`aap_seed_controller_credential_types.1.inputs.fields.13.multiline`](defaults/main.yml#L436)   | bool   | `True` |  None  |   None  |  None |
+| [`aap_seed_controller_credential_types.1.inputs.fields.13.secret`](defaults/main.yml#L437)   | bool   | `True` |  None  |   None  |  None |
+| [`aap_seed_controller_credential_types.1.inputs.fields.13.type`](defaults/main.yml#L434)   | str   | `string` |  None  |   None  |  None |
 | [`aap_seed_controller_credential_types.1.inputs.fields.2`](defaults/main.yml#L397)   | dict   | `{}` |  None  |   None  |  None |
 | [`aap_seed_controller_credential_types.1.inputs.fields.2.id`](defaults/main.yml#L397)   | str   | `username` |  None  |   None  |  None |
 | [`aap_seed_controller_credential_types.1.inputs.fields.2.label`](defaults/main.yml#L399)   | str   | `Username` |  None  |   None  |  None |
@@ -219,141 +226,141 @@ Description: Populates an Ansible Automation Platform instance.
 | [`aap_seed_controller_credential_types.1.inputs.fields.9.id`](defaults/main.yml#L420)   | str   | `vddk_init_image_username` |  None  |   None  |  None |
 | [`aap_seed_controller_credential_types.1.inputs.fields.9.label`](defaults/main.yml#L422)   | str   | `VDDK Init Image Username` |  None  |   None  |  None |
 | [`aap_seed_controller_credential_types.1.inputs.fields.9.type`](defaults/main.yml#L421)   | str   | `string` |  None  |   None  |  None |
-| [`aap_seed_controller_credential_types.1.inputs.required`](defaults/main.yml#L433)   | list   | `[]` |  None  |   None  |  None |
-| [`aap_seed_controller_credential_types.1.inputs.required.0`](defaults/main.yml#L434)   | str   | `name` |  None  |   None  |  None |
-| [`aap_seed_controller_credential_types.1.inputs.required.1`](defaults/main.yml#L435)   | str   | `host` |  None  |   None  |  None |
-| [`aap_seed_controller_credential_types.1.inputs.required.2`](defaults/main.yml#L436)   | str   | `provider_name` |  None  |   None  |  None |
+| [`aap_seed_controller_credential_types.1.inputs.required`](defaults/main.yml#L438)   | list   | `[]` |  None  |   None  |  None |
+| [`aap_seed_controller_credential_types.1.inputs.required.0`](defaults/main.yml#L439)   | str   | `name` |  None  |   None  |  None |
+| [`aap_seed_controller_credential_types.1.inputs.required.1`](defaults/main.yml#L440)   | str   | `host` |  None  |   None  |  None |
+| [`aap_seed_controller_credential_types.1.inputs.required.2`](defaults/main.yml#L441)   | str   | `provider_name` |  None  |   None  |  None |
 | [`aap_seed_controller_credential_types.1.kind`](defaults/main.yml#L388)   | str   | `cloud` |  None  |   None  |  None |
 | [`aap_seed_controller_credential_types.1.name`](defaults/main.yml#L385)   | str   | `VMware Migration Target` |  None  |   None  |  None |
 | [`aap_seed_controller_credential_types.1.organization`](defaults/main.yml#L387)   | str   | `{{ aap_seed_aap_org_name }}` |  None  |   None  |  None |
-| [`aap_seed_controller_credential_types.2`](defaults/main.yml#L453)   | dict   | `{}` |  None  |   None  |  None |
-| [`aap_seed_controller_credential_types.2.description`](defaults/main.yml#L454)   | str   | `Migration Target for Ovirt` |  None  |   None  |  None |
-| [`aap_seed_controller_credential_types.2.injectors`](defaults/main.yml#L492)   | dict   | `{}` |  None  |   None  |  None |
-| [`aap_seed_controller_credential_types.2.injectors.env`](defaults/main.yml#L500)   | dict   | `{}` |  None  |   None  |  None |
-| [`aap_seed_controller_credential_types.2.injectors.env.OVIRT_HOST`](defaults/main.yml#L501)   | str   | `{% raw %}{  { host }}{% endraw %}` |  None  |   None  |  None |
-| [`aap_seed_controller_credential_types.2.injectors.env.OVIRT_PASSWORD`](defaults/main.yml#L503)   | str   | `{% raw %}{  { password }}{% endraw %}` |  None  |   None  |  None |
-| [`aap_seed_controller_credential_types.2.injectors.env.OVIRT_USER`](defaults/main.yml#L502)   | str   | `{% raw %}{  { username }}{% endraw %}` |  None  |   None  |  None |
-| [`aap_seed_controller_credential_types.2.injectors.extra_vars`](defaults/main.yml#L493)   | dict   | `{}` |  None  |   None  |  None |
-| [`aap_seed_controller_credential_types.2.injectors.extra_vars.ovirt_cacert`](defaults/main.yml#L496)   | str   | `{% raw %}{  { cacert }}{% endraw %}` |  None  |   None  |  None |
-| [`aap_seed_controller_credential_types.2.injectors.extra_vars.ovirt_context_path`](defaults/main.yml#L497)   | str   | `{% raw %}{  { context_path }}{% endraw %}` |  None  |   None  |  None |
-| [`aap_seed_controller_credential_types.2.injectors.extra_vars.ovirt_credentials_secret_ref`](defaults/main.yml#L498)   | str   | `{% raw %}{  { credentials_secret_ref }}{% endraw %}` |  None  |   None  |  None |
-| [`aap_seed_controller_credential_types.2.injectors.extra_vars.ovirt_insecure_ssl`](defaults/main.yml#L495)   | str   | `{% raw %}{  { insecure_ssl }}{% endraw %}` |  None  |   None  |  None |
-| [`aap_seed_controller_credential_types.2.injectors.extra_vars.ovirt_target_name`](defaults/main.yml#L494)   | str   | `{% raw %}{  { name }}{% endraw %}` |  None  |   None  |  None |
-| [`aap_seed_controller_credential_types.2.injectors.extra_vars.provider`](defaults/main.yml#L499)   | str   | `{% raw %}{  { provider_name }}{% endraw %}` |  None  |   None  |  None |
-| [`aap_seed_controller_credential_types.2.inputs`](defaults/main.yml#L457)   | dict   | `{}` |  None  |   None  |  None |
-| [`aap_seed_controller_credential_types.2.inputs.fields`](defaults/main.yml#L458)   | list   | `[]` |  None  |   None  |  None |
-| [`aap_seed_controller_credential_types.2.inputs.fields.0`](defaults/main.yml#L459)   | dict   | `{}` |  None  |   None  |  None |
-| [`aap_seed_controller_credential_types.2.inputs.fields.0.id`](defaults/main.yml#L459)   | str   | `name` |  None  |   None  |  None |
-| [`aap_seed_controller_credential_types.2.inputs.fields.0.label`](defaults/main.yml#L461)   | str   | `Target Name` |  None  |   None  |  None |
-| [`aap_seed_controller_credential_types.2.inputs.fields.0.type`](defaults/main.yml#L460)   | str   | `string` |  None  |   None  |  None |
-| [`aap_seed_controller_credential_types.2.inputs.fields.1`](defaults/main.yml#L462)   | dict   | `{}` |  None  |   None  |  None |
-| [`aap_seed_controller_credential_types.2.inputs.fields.1.id`](defaults/main.yml#L462)   | str   | `host` |  None  |   None  |  None |
-| [`aap_seed_controller_credential_types.2.inputs.fields.1.label`](defaults/main.yml#L464)   | str   | `Ovirt Host` |  None  |   None  |  None |
-| [`aap_seed_controller_credential_types.2.inputs.fields.1.type`](defaults/main.yml#L463)   | str   | `string` |  None  |   None  |  None |
-| [`aap_seed_controller_credential_types.2.inputs.fields.2`](defaults/main.yml#L465)   | dict   | `{}` |  None  |   None  |  None |
-| [`aap_seed_controller_credential_types.2.inputs.fields.2.id`](defaults/main.yml#L465)   | str   | `username` |  None  |   None  |  None |
-| [`aap_seed_controller_credential_types.2.inputs.fields.2.label`](defaults/main.yml#L467)   | str   | `Username` |  None  |   None  |  None |
-| [`aap_seed_controller_credential_types.2.inputs.fields.2.type`](defaults/main.yml#L466)   | str   | `string` |  None  |   None  |  None |
-| [`aap_seed_controller_credential_types.2.inputs.fields.3`](defaults/main.yml#L468)   | dict   | `{}` |  None  |   None  |  None |
-| [`aap_seed_controller_credential_types.2.inputs.fields.3.id`](defaults/main.yml#L468)   | str   | `password` |  None  |   None  |  None |
-| [`aap_seed_controller_credential_types.2.inputs.fields.3.label`](defaults/main.yml#L470)   | str   | `Password` |  None  |   None  |  None |
-| [`aap_seed_controller_credential_types.2.inputs.fields.3.secret`](defaults/main.yml#L471)   | bool   | `True` |  None  |   None  |  None |
-| [`aap_seed_controller_credential_types.2.inputs.fields.3.type`](defaults/main.yml#L469)   | str   | `string` |  None  |   None  |  None |
-| [`aap_seed_controller_credential_types.2.inputs.fields.4`](defaults/main.yml#L472)   | dict   | `{}` |  None  |   None  |  None |
-| [`aap_seed_controller_credential_types.2.inputs.fields.4.id`](defaults/main.yml#L472)   | str   | `insecure_ssl` |  None  |   None  |  None |
-| [`aap_seed_controller_credential_types.2.inputs.fields.4.label`](defaults/main.yml#L474)   | str   | `Skip Validate Ovirt Certificate Verification` |  None  |   None  |  None |
-| [`aap_seed_controller_credential_types.2.inputs.fields.4.type`](defaults/main.yml#L473)   | str   | `boolean` |  None  |   None  |  None |
-| [`aap_seed_controller_credential_types.2.inputs.fields.5`](defaults/main.yml#L475)   | dict   | `{}` |  None  |   None  |  None |
-| [`aap_seed_controller_credential_types.2.inputs.fields.5.id`](defaults/main.yml#L475)   | str   | `cacert` |  None  |   None  |  None |
-| [`aap_seed_controller_credential_types.2.inputs.fields.5.label`](defaults/main.yml#L477)   | str   | `Ovirt CA Certificate` |  None  |   None  |  None |
-| [`aap_seed_controller_credential_types.2.inputs.fields.5.multiline`](defaults/main.yml#L478)   | bool   | `True` |  None  |   None  |  None |
-| [`aap_seed_controller_credential_types.2.inputs.fields.5.type`](defaults/main.yml#L476)   | str   | `string` |  None  |   None  |  None |
-| [`aap_seed_controller_credential_types.2.inputs.fields.6`](defaults/main.yml#L479)   | dict   | `{}` |  None  |   None  |  None |
-| [`aap_seed_controller_credential_types.2.inputs.fields.6.id`](defaults/main.yml#L479)   | str   | `context_path` |  None  |   None  |  None |
-| [`aap_seed_controller_credential_types.2.inputs.fields.6.label`](defaults/main.yml#L481)   | str   | `Ovirt Context Path` |  None  |   None  |  None |
-| [`aap_seed_controller_credential_types.2.inputs.fields.6.type`](defaults/main.yml#L480)   | str   | `string` |  None  |   None  |  None |
-| [`aap_seed_controller_credential_types.2.inputs.fields.7`](defaults/main.yml#L482)   | dict   | `{}` |  None  |   None  |  None |
-| [`aap_seed_controller_credential_types.2.inputs.fields.7.id`](defaults/main.yml#L482)   | str   | `credentials_secret_ref` |  None  |   None  |  None |
-| [`aap_seed_controller_credential_types.2.inputs.fields.7.label`](defaults/main.yml#L484)   | str   | `Credentials Secret Reference` |  None  |   None  |  None |
-| [`aap_seed_controller_credential_types.2.inputs.fields.7.type`](defaults/main.yml#L483)   | str   | `string` |  None  |   None  |  None |
-| [`aap_seed_controller_credential_types.2.inputs.fields.8`](defaults/main.yml#L485)   | dict   | `{}` |  None  |   None  |  None |
-| [`aap_seed_controller_credential_types.2.inputs.fields.8.id`](defaults/main.yml#L485)   | str   | `provider_name` |  None  |   None  |  None |
-| [`aap_seed_controller_credential_types.2.inputs.fields.8.label`](defaults/main.yml#L487)   | str   | `Provider source` |  None  |   None  |  None |
-| [`aap_seed_controller_credential_types.2.inputs.fields.8.type`](defaults/main.yml#L486)   | str   | `string` |  None  |   None  |  None |
-| [`aap_seed_controller_credential_types.2.inputs.required`](defaults/main.yml#L488)   | list   | `[]` |  None  |   None  |  None |
-| [`aap_seed_controller_credential_types.2.inputs.required.0`](defaults/main.yml#L489)   | str   | `name` |  None  |   None  |  None |
-| [`aap_seed_controller_credential_types.2.inputs.required.1`](defaults/main.yml#L490)   | str   | `host` |  None  |   None  |  None |
-| [`aap_seed_controller_credential_types.2.inputs.required.2`](defaults/main.yml#L491)   | str   | `provider_name` |  None  |   None  |  None |
-| [`aap_seed_controller_credential_types.2.kind`](defaults/main.yml#L456)   | str   | `cloud` |  None  |   None  |  None |
-| [`aap_seed_controller_credential_types.2.name`](defaults/main.yml#L453)   | str   | `Ovirt Migration Target` |  None  |   None  |  None |
-| [`aap_seed_controller_credential_types.2.organization`](defaults/main.yml#L455)   | str   | `{{ aap_seed_aap_org_name }}` |  None  |   None  |  None |
+| [`aap_seed_controller_credential_types.2`](defaults/main.yml#L459)   | dict   | `{}` |  None  |   None  |  None |
+| [`aap_seed_controller_credential_types.2.description`](defaults/main.yml#L460)   | str   | `Migration Target for Ovirt` |  None  |   None  |  None |
+| [`aap_seed_controller_credential_types.2.injectors`](defaults/main.yml#L498)   | dict   | `{}` |  None  |   None  |  None |
+| [`aap_seed_controller_credential_types.2.injectors.env`](defaults/main.yml#L506)   | dict   | `{}` |  None  |   None  |  None |
+| [`aap_seed_controller_credential_types.2.injectors.env.OVIRT_HOST`](defaults/main.yml#L507)   | str   | `{% raw %}{  { host }}{% endraw %}` |  None  |   None  |  None |
+| [`aap_seed_controller_credential_types.2.injectors.env.OVIRT_PASSWORD`](defaults/main.yml#L509)   | str   | `{% raw %}{  { password }}{% endraw %}` |  None  |   None  |  None |
+| [`aap_seed_controller_credential_types.2.injectors.env.OVIRT_USER`](defaults/main.yml#L508)   | str   | `{% raw %}{  { username }}{% endraw %}` |  None  |   None  |  None |
+| [`aap_seed_controller_credential_types.2.injectors.extra_vars`](defaults/main.yml#L499)   | dict   | `{}` |  None  |   None  |  None |
+| [`aap_seed_controller_credential_types.2.injectors.extra_vars.ovirt_cacert`](defaults/main.yml#L502)   | str   | `{% raw %}{  { cacert }}{% endraw %}` |  None  |   None  |  None |
+| [`aap_seed_controller_credential_types.2.injectors.extra_vars.ovirt_context_path`](defaults/main.yml#L503)   | str   | `{% raw %}{  { context_path }}{% endraw %}` |  None  |   None  |  None |
+| [`aap_seed_controller_credential_types.2.injectors.extra_vars.ovirt_credentials_secret_ref`](defaults/main.yml#L504)   | str   | `{% raw %}{  { credentials_secret_ref }}{% endraw %}` |  None  |   None  |  None |
+| [`aap_seed_controller_credential_types.2.injectors.extra_vars.ovirt_insecure_ssl`](defaults/main.yml#L501)   | str   | `{% raw %}{  { insecure_ssl }}{% endraw %}` |  None  |   None  |  None |
+| [`aap_seed_controller_credential_types.2.injectors.extra_vars.ovirt_target_name`](defaults/main.yml#L500)   | str   | `{% raw %}{  { name }}{% endraw %}` |  None  |   None  |  None |
+| [`aap_seed_controller_credential_types.2.injectors.extra_vars.provider`](defaults/main.yml#L505)   | str   | `{% raw %}{  { provider_name }}{% endraw %}` |  None  |   None  |  None |
+| [`aap_seed_controller_credential_types.2.inputs`](defaults/main.yml#L463)   | dict   | `{}` |  None  |   None  |  None |
+| [`aap_seed_controller_credential_types.2.inputs.fields`](defaults/main.yml#L464)   | list   | `[]` |  None  |   None  |  None |
+| [`aap_seed_controller_credential_types.2.inputs.fields.0`](defaults/main.yml#L465)   | dict   | `{}` |  None  |   None  |  None |
+| [`aap_seed_controller_credential_types.2.inputs.fields.0.id`](defaults/main.yml#L465)   | str   | `name` |  None  |   None  |  None |
+| [`aap_seed_controller_credential_types.2.inputs.fields.0.label`](defaults/main.yml#L467)   | str   | `Target Name` |  None  |   None  |  None |
+| [`aap_seed_controller_credential_types.2.inputs.fields.0.type`](defaults/main.yml#L466)   | str   | `string` |  None  |   None  |  None |
+| [`aap_seed_controller_credential_types.2.inputs.fields.1`](defaults/main.yml#L468)   | dict   | `{}` |  None  |   None  |  None |
+| [`aap_seed_controller_credential_types.2.inputs.fields.1.id`](defaults/main.yml#L468)   | str   | `host` |  None  |   None  |  None |
+| [`aap_seed_controller_credential_types.2.inputs.fields.1.label`](defaults/main.yml#L470)   | str   | `Ovirt Host` |  None  |   None  |  None |
+| [`aap_seed_controller_credential_types.2.inputs.fields.1.type`](defaults/main.yml#L469)   | str   | `string` |  None  |   None  |  None |
+| [`aap_seed_controller_credential_types.2.inputs.fields.2`](defaults/main.yml#L471)   | dict   | `{}` |  None  |   None  |  None |
+| [`aap_seed_controller_credential_types.2.inputs.fields.2.id`](defaults/main.yml#L471)   | str   | `username` |  None  |   None  |  None |
+| [`aap_seed_controller_credential_types.2.inputs.fields.2.label`](defaults/main.yml#L473)   | str   | `Username` |  None  |   None  |  None |
+| [`aap_seed_controller_credential_types.2.inputs.fields.2.type`](defaults/main.yml#L472)   | str   | `string` |  None  |   None  |  None |
+| [`aap_seed_controller_credential_types.2.inputs.fields.3`](defaults/main.yml#L474)   | dict   | `{}` |  None  |   None  |  None |
+| [`aap_seed_controller_credential_types.2.inputs.fields.3.id`](defaults/main.yml#L474)   | str   | `password` |  None  |   None  |  None |
+| [`aap_seed_controller_credential_types.2.inputs.fields.3.label`](defaults/main.yml#L476)   | str   | `Password` |  None  |   None  |  None |
+| [`aap_seed_controller_credential_types.2.inputs.fields.3.secret`](defaults/main.yml#L477)   | bool   | `True` |  None  |   None  |  None |
+| [`aap_seed_controller_credential_types.2.inputs.fields.3.type`](defaults/main.yml#L475)   | str   | `string` |  None  |   None  |  None |
+| [`aap_seed_controller_credential_types.2.inputs.fields.4`](defaults/main.yml#L478)   | dict   | `{}` |  None  |   None  |  None |
+| [`aap_seed_controller_credential_types.2.inputs.fields.4.id`](defaults/main.yml#L478)   | str   | `insecure_ssl` |  None  |   None  |  None |
+| [`aap_seed_controller_credential_types.2.inputs.fields.4.label`](defaults/main.yml#L480)   | str   | `Skip Validate Ovirt Certificate Verification` |  None  |   None  |  None |
+| [`aap_seed_controller_credential_types.2.inputs.fields.4.type`](defaults/main.yml#L479)   | str   | `boolean` |  None  |   None  |  None |
+| [`aap_seed_controller_credential_types.2.inputs.fields.5`](defaults/main.yml#L481)   | dict   | `{}` |  None  |   None  |  None |
+| [`aap_seed_controller_credential_types.2.inputs.fields.5.id`](defaults/main.yml#L481)   | str   | `cacert` |  None  |   None  |  None |
+| [`aap_seed_controller_credential_types.2.inputs.fields.5.label`](defaults/main.yml#L483)   | str   | `Ovirt CA Certificate` |  None  |   None  |  None |
+| [`aap_seed_controller_credential_types.2.inputs.fields.5.multiline`](defaults/main.yml#L484)   | bool   | `True` |  None  |   None  |  None |
+| [`aap_seed_controller_credential_types.2.inputs.fields.5.type`](defaults/main.yml#L482)   | str   | `string` |  None  |   None  |  None |
+| [`aap_seed_controller_credential_types.2.inputs.fields.6`](defaults/main.yml#L485)   | dict   | `{}` |  None  |   None  |  None |
+| [`aap_seed_controller_credential_types.2.inputs.fields.6.id`](defaults/main.yml#L485)   | str   | `context_path` |  None  |   None  |  None |
+| [`aap_seed_controller_credential_types.2.inputs.fields.6.label`](defaults/main.yml#L487)   | str   | `Ovirt Context Path` |  None  |   None  |  None |
+| [`aap_seed_controller_credential_types.2.inputs.fields.6.type`](defaults/main.yml#L486)   | str   | `string` |  None  |   None  |  None |
+| [`aap_seed_controller_credential_types.2.inputs.fields.7`](defaults/main.yml#L488)   | dict   | `{}` |  None  |   None  |  None |
+| [`aap_seed_controller_credential_types.2.inputs.fields.7.id`](defaults/main.yml#L488)   | str   | `credentials_secret_ref` |  None  |   None  |  None |
+| [`aap_seed_controller_credential_types.2.inputs.fields.7.label`](defaults/main.yml#L490)   | str   | `Credentials Secret Reference` |  None  |   None  |  None |
+| [`aap_seed_controller_credential_types.2.inputs.fields.7.type`](defaults/main.yml#L489)   | str   | `string` |  None  |   None  |  None |
+| [`aap_seed_controller_credential_types.2.inputs.fields.8`](defaults/main.yml#L491)   | dict   | `{}` |  None  |   None  |  None |
+| [`aap_seed_controller_credential_types.2.inputs.fields.8.id`](defaults/main.yml#L491)   | str   | `provider_name` |  None  |   None  |  None |
+| [`aap_seed_controller_credential_types.2.inputs.fields.8.label`](defaults/main.yml#L493)   | str   | `Provider source` |  None  |   None  |  None |
+| [`aap_seed_controller_credential_types.2.inputs.fields.8.type`](defaults/main.yml#L492)   | str   | `string` |  None  |   None  |  None |
+| [`aap_seed_controller_credential_types.2.inputs.required`](defaults/main.yml#L494)   | list   | `[]` |  None  |   None  |  None |
+| [`aap_seed_controller_credential_types.2.inputs.required.0`](defaults/main.yml#L495)   | str   | `name` |  None  |   None  |  None |
+| [`aap_seed_controller_credential_types.2.inputs.required.1`](defaults/main.yml#L496)   | str   | `host` |  None  |   None  |  None |
+| [`aap_seed_controller_credential_types.2.inputs.required.2`](defaults/main.yml#L497)   | str   | `provider_name` |  None  |   None  |  None |
+| [`aap_seed_controller_credential_types.2.kind`](defaults/main.yml#L462)   | str   | `cloud` |  None  |   None  |  None |
+| [`aap_seed_controller_credential_types.2.name`](defaults/main.yml#L459)   | str   | `Ovirt Migration Target` |  None  |   None  |  None |
+| [`aap_seed_controller_credential_types.2.organization`](defaults/main.yml#L461)   | str   | `{{ aap_seed_aap_org_name }}` |  None  |   None  |  None |
 | [`aap_seed_controller_credentials`](defaults/main.yml#L325)   | list   | `[]` |  None  |   True  |  Credentials to Seed |
 | [`aap_seed_controller_dependency_check`](defaults/main.yml#L86)   | bool   | `False` |  None  |   True  |  Dependency Check |
-| [`aap_seed_controller_execution_environments`](defaults/main.yml#L531)   | list   | `[]` |  None  |   True  |  Execution Environment |
-| [`aap_seed_controller_execution_environments.0`](defaults/main.yml#L532)   | dict   | `{}` |  None  |   None  |  None |
-| [`aap_seed_controller_execution_environments.0.credential`](defaults/main.yml#L535)   | str   | `<multiline value: folded_strip>` |  None  |   None  |  None |
-| [`aap_seed_controller_execution_environments.0.image`](defaults/main.yml#L533)   | str   | `{{ aap_seed_aap_execution_environment_image }}` |  None  |   None  |  None |
-| [`aap_seed_controller_execution_environments.0.name`](defaults/main.yml#L532)   | str   | `{{ aap_seed_aap_execution_environment }}` |  None  |   None  |  None |
-| [`aap_seed_controller_execution_environments.0.pull`](defaults/main.yml#L534)   | str   | `always` |  None  |   None  |  None |
+| [`aap_seed_controller_execution_environments`](defaults/main.yml#L537)   | list   | `[]` |  None  |   True  |  Execution Environment |
+| [`aap_seed_controller_execution_environments.0`](defaults/main.yml#L538)   | dict   | `{}` |  None  |   None  |  None |
+| [`aap_seed_controller_execution_environments.0.credential`](defaults/main.yml#L541)   | str   | `<multiline value: folded_strip>` |  None  |   None  |  None |
+| [`aap_seed_controller_execution_environments.0.image`](defaults/main.yml#L539)   | str   | `{{ aap_seed_aap_execution_environment_image }}` |  None  |   None  |  None |
+| [`aap_seed_controller_execution_environments.0.name`](defaults/main.yml#L538)   | str   | `{{ aap_seed_aap_execution_environment }}` |  None  |   None  |  None |
+| [`aap_seed_controller_execution_environments.0.pull`](defaults/main.yml#L540)   | str   | `always` |  None  |   None  |  None |
 | [`aap_seed_controller_hostname`](defaults/main.yml#L51)   | str   | `<multiline value: folded_strip>` |  None  |   None  |  None |
-| [`aap_seed_controller_hosts`](defaults/main.yml#L549)   | list   | `[]` |  None  |   True  |  Host |
-| [`aap_seed_controller_hosts.0`](defaults/main.yml#L550)   | dict   | `{}` |  None  |   None  |  None |
-| [`aap_seed_controller_hosts.0.inventory`](defaults/main.yml#L551)   | str   | `{{ aap_seed_aap_inventory }}` |  None  |   None  |  None |
-| [`aap_seed_controller_hosts.0.name`](defaults/main.yml#L550)   | str   | `localhost` |  None  |   None  |  None |
-| [`aap_seed_controller_hosts.0.variables`](defaults/main.yml#L552)   | dict   | `{}` |  None  |   None  |  None |
-| [`aap_seed_controller_hosts.0.variables.ansible_connection`](defaults/main.yml#L553)   | str   | `local` |  None  |   None  |  None |
-| [`aap_seed_controller_hosts.0.variables.ansible_python_interpreter`](defaults/main.yml#L554)   | str   | `{  { ansible_playbook_python }}` |  None  |   None  |  None |
-| [`aap_seed_controller_inventories`](defaults/main.yml#L542)   | list   | `[]` |  None  |   True  |  Inventory |
-| [`aap_seed_controller_inventories.0`](defaults/main.yml#L543)   | dict   | `{}` |  None  |   None  |  None |
-| [`aap_seed_controller_inventories.0.name`](defaults/main.yml#L543)   | str   | `{{ aap_seed_aap_inventory }}` |  None  |   None  |  None |
-| [`aap_seed_controller_inventories.0.organization`](defaults/main.yml#L544)   | str   | `{{ aap_seed_aap_org_name }}` |  None  |   None  |  None |
-| [`aap_seed_controller_organizations`](defaults/main.yml#L507)   | list   | `[]` |  None  |   True  |  Organization |
-| [`aap_seed_controller_organizations.0`](defaults/main.yml#L508)   | dict   | `{}` |  None  |   None  |  None |
-| [`aap_seed_controller_organizations.0.galaxy_credentials`](defaults/main.yml#L509)   | str   | `<multiline value: folded_strip>` |  None  |   None  |  None |
-| [`aap_seed_controller_organizations.0.name`](defaults/main.yml#L508)   | str   | `{{ aap_seed_aap_org_name }}` |  None  |   None  |  None |
+| [`aap_seed_controller_hosts`](defaults/main.yml#L555)   | list   | `[]` |  None  |   True  |  Host |
+| [`aap_seed_controller_hosts.0`](defaults/main.yml#L556)   | dict   | `{}` |  None  |   None  |  None |
+| [`aap_seed_controller_hosts.0.inventory`](defaults/main.yml#L557)   | str   | `{{ aap_seed_aap_inventory }}` |  None  |   None  |  None |
+| [`aap_seed_controller_hosts.0.name`](defaults/main.yml#L556)   | str   | `localhost` |  None  |   None  |  None |
+| [`aap_seed_controller_hosts.0.variables`](defaults/main.yml#L558)   | dict   | `{}` |  None  |   None  |  None |
+| [`aap_seed_controller_hosts.0.variables.ansible_connection`](defaults/main.yml#L559)   | str   | `local` |  None  |   None  |  None |
+| [`aap_seed_controller_hosts.0.variables.ansible_python_interpreter`](defaults/main.yml#L560)   | str   | `{  { ansible_playbook_python }}` |  None  |   None  |  None |
+| [`aap_seed_controller_inventories`](defaults/main.yml#L548)   | list   | `[]` |  None  |   True  |  Inventory |
+| [`aap_seed_controller_inventories.0`](defaults/main.yml#L549)   | dict   | `{}` |  None  |   None  |  None |
+| [`aap_seed_controller_inventories.0.name`](defaults/main.yml#L549)   | str   | `{{ aap_seed_aap_inventory }}` |  None  |   None  |  None |
+| [`aap_seed_controller_inventories.0.organization`](defaults/main.yml#L550)   | str   | `{{ aap_seed_aap_org_name }}` |  None  |   None  |  None |
+| [`aap_seed_controller_organizations`](defaults/main.yml#L513)   | list   | `[]` |  None  |   True  |  Organization |
+| [`aap_seed_controller_organizations.0`](defaults/main.yml#L514)   | dict   | `{}` |  None  |   None  |  None |
+| [`aap_seed_controller_organizations.0.galaxy_credentials`](defaults/main.yml#L515)   | str   | `<multiline value: folded_strip>` |  None  |   None  |  None |
+| [`aap_seed_controller_organizations.0.name`](defaults/main.yml#L514)   | str   | `{{ aap_seed_aap_org_name }}` |  None  |   None  |  None |
 | [`aap_seed_controller_organizations_var`](defaults/main.yml#L72)   | str   | `<multiline value: folded_strip>` |  None  |   True  |  AAP Organizations Variable |
 | [`aap_seed_controller_password`](defaults/main.yml#L42)   | str   | `<multiline value: folded_strip>` |  None  |   True  |  AAP Controller Password |
-| [`aap_seed_controller_projects`](defaults/main.yml#L516)   | list   | `[]` |  None  |   The project in AAP where the collection will reside  |  Project |
-| [`aap_seed_controller_projects.0`](defaults/main.yml#L517)   | dict   | `{}` |  None  |   None  |  None |
-| [`aap_seed_controller_projects.0.credential`](defaults/main.yml#L525)   | str   | `{{ aap_seed_git_credential_name }}` |  None  |   None  |  None |
-| [`aap_seed_controller_projects.0.local_path`](defaults/main.yml#L526)   | str   | `infra/openshift_virtualization_migration` |  None  |   None  |  None |
-| [`aap_seed_controller_projects.0.name`](defaults/main.yml#L517)   | str   | `{{ aap_seed_aap_project }}` |  None  |   None  |  None |
-| [`aap_seed_controller_projects.0.organization`](defaults/main.yml#L518)   | str   | `{{ aap_seed_aap_org_name }}` |  None  |   None  |  None |
-| [`aap_seed_controller_projects.0.scm_branch`](defaults/main.yml#L519)   | str   | `{{ aap_seed_aap_project_branch }}` |  None  |   None  |  None |
-| [`aap_seed_controller_projects.0.scm_clean`](defaults/main.yml#L520)   | str   | `no` |  None  |   None  |  None |
-| [`aap_seed_controller_projects.0.scm_delete_on_update`](defaults/main.yml#L521)   | str   | `no` |  None  |   None  |  None |
-| [`aap_seed_controller_projects.0.scm_type`](defaults/main.yml#L522)   | str   | `git` |  None  |   None  |  None |
-| [`aap_seed_controller_projects.0.scm_update_on_launch`](defaults/main.yml#L523)   | str   | `yes` |  None  |   None  |  None |
-| [`aap_seed_controller_projects.0.scm_url`](defaults/main.yml#L524)   | str   | `{{ aap_seed_aap_project_repo }}` |  None  |   None  |  None |
-| [`aap_seed_controller_templates`](defaults/main.yml#L559)   | list   | `[]` |  None  |   True  |  AAP Controller Templates |
-| [`aap_seed_controller_templates.0`](defaults/main.yml#L560)   | dict   | `{}` |  None  |   None  |  None |
-| [`aap_seed_controller_templates.0.ask_credential_on_launch`](defaults/main.yml#L569)   | bool   | `True` |  None  |   None  |  None |
-| [`aap_seed_controller_templates.0.ask_variables_on_launch`](defaults/main.yml#L564)   | bool   | `True` |  None  |   None  |  None |
-| [`aap_seed_controller_templates.0.execution_environment`](defaults/main.yml#L568)   | str   | `{{ aap_seed_aap_execution_environment }}` |  None  |   None  |  None |
-| [`aap_seed_controller_templates.0.extra_vars`](defaults/main.yml#L565)   | str   | `{{ aap_seed_aap_job_template_extra_vars }}` |  None  |   None  |  None |
-| [`aap_seed_controller_templates.0.inventory`](defaults/main.yml#L567)   | str   | `{{ aap_seed_aap_inventory }}` |  None  |   None  |  None |
-| [`aap_seed_controller_templates.0.job_type`](defaults/main.yml#L563)   | str   | `run` |  None  |   None  |  None |
-| [`aap_seed_controller_templates.0.name`](defaults/main.yml#L560)   | str   | `OpenShift Virtualization Migration - Migrate` |  None  |   None  |  None |
-| [`aap_seed_controller_templates.0.organization`](defaults/main.yml#L561)   | str   | `{{ aap_seed_aap_org_name }}` |  None  |   None  |  None |
-| [`aap_seed_controller_templates.0.playbook`](defaults/main.yml#L566)   | str   | `playbooks/mtv_migrate.yml` |  None  |   None  |  None |
-| [`aap_seed_controller_templates.0.project`](defaults/main.yml#L562)   | str   | `{{ aap_seed_aap_project }}` |  None  |   None  |  None |
+| [`aap_seed_controller_projects`](defaults/main.yml#L522)   | list   | `[]` |  None  |   The project in AAP where the collection will reside  |  Project |
+| [`aap_seed_controller_projects.0`](defaults/main.yml#L523)   | dict   | `{}` |  None  |   None  |  None |
+| [`aap_seed_controller_projects.0.credential`](defaults/main.yml#L531)   | str   | `{{ aap_seed_git_credential_name }}` |  None  |   None  |  None |
+| [`aap_seed_controller_projects.0.local_path`](defaults/main.yml#L532)   | str   | `infra/openshift_virtualization_migration` |  None  |   None  |  None |
+| [`aap_seed_controller_projects.0.name`](defaults/main.yml#L523)   | str   | `{{ aap_seed_aap_project }}` |  None  |   None  |  None |
+| [`aap_seed_controller_projects.0.organization`](defaults/main.yml#L524)   | str   | `{{ aap_seed_aap_org_name }}` |  None  |   None  |  None |
+| [`aap_seed_controller_projects.0.scm_branch`](defaults/main.yml#L525)   | str   | `{{ aap_seed_aap_project_branch }}` |  None  |   None  |  None |
+| [`aap_seed_controller_projects.0.scm_clean`](defaults/main.yml#L526)   | str   | `no` |  None  |   None  |  None |
+| [`aap_seed_controller_projects.0.scm_delete_on_update`](defaults/main.yml#L527)   | str   | `no` |  None  |   None  |  None |
+| [`aap_seed_controller_projects.0.scm_type`](defaults/main.yml#L528)   | str   | `git` |  None  |   None  |  None |
+| [`aap_seed_controller_projects.0.scm_update_on_launch`](defaults/main.yml#L529)   | str   | `yes` |  None  |   None  |  None |
+| [`aap_seed_controller_projects.0.scm_url`](defaults/main.yml#L530)   | str   | `{{ aap_seed_aap_project_repo }}` |  None  |   None  |  None |
+| [`aap_seed_controller_templates`](defaults/main.yml#L565)   | list   | `[]` |  None  |   True  |  AAP Controller Templates |
+| [`aap_seed_controller_templates.0`](defaults/main.yml#L566)   | dict   | `{}` |  None  |   None  |  None |
+| [`aap_seed_controller_templates.0.ask_credential_on_launch`](defaults/main.yml#L575)   | bool   | `True` |  None  |   None  |  None |
+| [`aap_seed_controller_templates.0.ask_variables_on_launch`](defaults/main.yml#L570)   | bool   | `True` |  None  |   None  |  None |
+| [`aap_seed_controller_templates.0.execution_environment`](defaults/main.yml#L574)   | str   | `{{ aap_seed_aap_execution_environment }}` |  None  |   None  |  None |
+| [`aap_seed_controller_templates.0.extra_vars`](defaults/main.yml#L571)   | str   | `{{ aap_seed_aap_job_template_extra_vars }}` |  None  |   None  |  None |
+| [`aap_seed_controller_templates.0.inventory`](defaults/main.yml#L573)   | str   | `{{ aap_seed_aap_inventory }}` |  None  |   None  |  None |
+| [`aap_seed_controller_templates.0.job_type`](defaults/main.yml#L569)   | str   | `run` |  None  |   None  |  None |
+| [`aap_seed_controller_templates.0.name`](defaults/main.yml#L566)   | str   | `OpenShift Virtualization Migration - Migrate` |  None  |   None  |  None |
+| [`aap_seed_controller_templates.0.organization`](defaults/main.yml#L567)   | str   | `{{ aap_seed_aap_org_name }}` |  None  |   None  |  None |
+| [`aap_seed_controller_templates.0.playbook`](defaults/main.yml#L572)   | str   | `playbooks/mtv_migrate.yml` |  None  |   None  |  None |
+| [`aap_seed_controller_templates.0.project`](defaults/main.yml#L568)   | str   | `{{ aap_seed_aap_project }}` |  None  |   None  |  None |
 | [`aap_seed_controller_token`](defaults/main.yml#L48)   | str   | `<multiline value: folded_strip>` |  None  |   False  |  AAP token |
 | [`aap_seed_controller_username`](defaults/main.yml#L35)   | str   | `<multiline value: folded_strip>` |  None  |   True  |  AAP Controller Username |
 | [`aap_seed_controller_validate_certs`](defaults/main.yml#L58)   | str   | `<multiline value: folded_strip>` |  None  |   True  |  Validate AAP Controller Certificate |
-| [`aap_seed_controller_workflow_launch_jobs`](defaults/main.yml#L577)   | NoneType   | `None` |  None  |   True  |  Workflow Launch Jobs |
-| [`aap_seed_credential_types_create`](defaults/main.yml#L599)   | bool   | `True` |  None  |   True  |  Create Credential Types |
-| [`aap_seed_execution_environments_create`](defaults/main.yml#L594)   | bool   | `True` |  None  |   True  |  Create Execution Environments |
+| [`aap_seed_controller_workflow_launch_jobs`](defaults/main.yml#L583)   | NoneType   | `None` |  None  |   True  |  Workflow Launch Jobs |
+| [`aap_seed_credential_types_create`](defaults/main.yml#L605)   | bool   | `True` |  None  |   True  |  Create Credential Types |
+| [`aap_seed_execution_environments_create`](defaults/main.yml#L600)   | bool   | `True` |  None  |   True  |  Create Execution Environments |
 | [`aap_seed_git_credential_name`](defaults/main.yml#L170)   | str   | `<multiline value: folded_strip>` |  None  |   True  |  Git Credential Name |
 | [`aap_seed_git_password`](defaults/main.yml#L181)   | str   | `{{ (git_password is defined) ¦ ansible.builtin.ternary(git_password, '') }}` |  None  |   True  |  Git Password |
 | [`aap_seed_git_ssh_key_passphrase`](defaults/main.yml#L193)   | str   | `<multiline value: folded_strip>` |  None  |   True  |  Git SSH Private Key Passphrase |
 | [`aap_seed_git_ssh_private_key`](defaults/main.yml#L186)   | str   | `<multiline value: folded_strip>` |  None  |   True  |  Git SSH Private Key |
 | [`aap_seed_git_username`](defaults/main.yml#L176)   | str   | `{{ (git_username is defined) ¦ ansible.builtin.ternary(git_username, '') }}` |  None  |   True  |  Git Username |
-| [`aap_seed_hosts_create`](defaults/main.yml#L609)   | bool   | `True` |  None  |   True  |  Create Hosts |
-| [`aap_seed_inventories_create`](defaults/main.yml#L604)   | bool   | `True` |  None  |   True  |  Create Inventories |
-| [`aap_seed_job_templates_create`](defaults/main.yml#L614)   | bool   | `True` |  None  |   True  |  Create Job Templates |
+| [`aap_seed_hosts_create`](defaults/main.yml#L615)   | bool   | `True` |  None  |   True  |  Create Hosts |
+| [`aap_seed_inventories_create`](defaults/main.yml#L610)   | bool   | `True` |  None  |   True  |  Create Inventories |
+| [`aap_seed_job_templates_create`](defaults/main.yml#L620)   | bool   | `True` |  None  |   True  |  Create Job Templates |
 | [`aap_seed_migration_hub`](defaults/main.yml#L10)   | list   | `[]` |  None  |   True  |  AAP Migration Hub |
 | [`aap_seed_migration_targets`](defaults/main.yml#L262)   | str   | `{{ migration_targets ¦ default([]) }}` |  None  |   True  |  Migration Targets |
-| [`aap_seed_migration_targets_credentials_create`](defaults/main.yml#L634)   | bool   | `True` |  None  |   True  |  Create Migration Target Credentials |
+| [`aap_seed_migration_targets_credentials_create`](defaults/main.yml#L640)   | bool   | `True` |  None  |   True  |  Create Migration Target Credentials |
 | [`aap_seed_operator_management_hub`](defaults/main.yml#L268)   | list   | `[]` |  None  |   True  |  Default Management Hub Operators |
 | [`aap_seed_operator_management_hub.0`](defaults/main.yml#L269)   | str   | `acm` |  None  |   None  |  None |
 | [`aap_seed_operator_management_hub.1`](defaults/main.yml#L270)   | str   | `oadp` |  None  |   None  |  None |
@@ -366,9 +373,9 @@ Description: Populates an Ansible Automation Platform instance.
 | [`aap_seed_operator_management_spoke.3`](defaults/main.yml#L282)   | str   | `far` |  None  |   None  |  None |
 | [`aap_seed_operator_management_spoke.4`](defaults/main.yml#L283)   | str   | `nmstate` |  None  |   None  |  None |
 | [`aap_seed_operator_management_spoke.5`](defaults/main.yml#L284)   | str   | `nho` |  None  |   None  |  None |
-| [`aap_seed_organization_create`](defaults/main.yml#L584)   | bool   | `True` |  None  |   True  |  Create Organization |
-| [`aap_seed_project_credentials_create`](defaults/main.yml#L629)   | bool   | `True` |  None  |   True  |  Create Project Credentials |
-| [`aap_seed_projects_create`](defaults/main.yml#L589)   | bool   | `True` |  None  |   True  |  Create Projects |
+| [`aap_seed_organization_create`](defaults/main.yml#L590)   | bool   | `True` |  None  |   True  |  Create Organization |
+| [`aap_seed_project_credentials_create`](defaults/main.yml#L635)   | bool   | `True` |  None  |   True  |  Create Project Credentials |
+| [`aap_seed_projects_create`](defaults/main.yml#L595)   | bool   | `True` |  None  |   True  |  Create Projects |
 | [`aap_seed_secure_logging`](defaults/main.yml#L5)   | str   | `{{ secure_logging ¦ default(true) }}` |  None  |   True  |  AAP Secure Logging |
 | [`aap_seed_vmware_cacert`](defaults/main.yml#L222)   | str   | `{{ vmware_cacert }}` |  None  |   True  |  VMware CA Certificate |
 | [`aap_seed_vmware_context_path`](defaults/main.yml#L227)   | str   | `{{ vmware_context_path }}` |  None  |   True  |  VMware Context Path |
@@ -376,7 +383,7 @@ Description: Populates an Ansible Automation Platform instance.
 | [`aap_seed_vmware_password`](defaults/main.yml#L212)   | str   | `{{ vmware_password }}` |  None  |   True  |  VMware Password |
 | [`aap_seed_vmware_user`](defaults/main.yml#L207)   | str   | `{{ vmware_user }}` |  None  |   True  |  VMware Username |
 | [`aap_seed_vmware_validate_certs`](defaults/main.yml#L217)   | str   | `{{ vmware_validate_certs }}` |  None  |   True  |  Validate VMware Certificate |
-| [`aap_seed_workflow_job_templates_create`](defaults/main.yml#L619)   | bool   | `True` |  None  |   True  |  Create Workflow Job Templates |
+| [`aap_seed_workflow_job_templates_create`](defaults/main.yml#L625)   | bool   | `True` |  None  |   True  |  Create Workflow Job Templates |
 
 <summary><b>🖇️ Full descriptions for vars in defaults/main.yml</b></summary>
 <br>
@@ -636,6 +643,8 @@ Description: Populates an Ansible Automation Platform instance.
 <br>
 <b>`aap_seed_controller_credential_types.1.injectors.extra_vars.vmware_credentials_secret_ref`:</b> None
 <br>
+<b>`aap_seed_controller_credential_types.1.injectors.extra_vars.vmware_esxi_hosts`:</b> None
+<br>
 <b>`aap_seed_controller_credential_types.1.injectors.extra_vars.vmware_insecure_ssl`:</b> None
 <br>
 <b>`aap_seed_controller_credential_types.1.injectors.extra_vars.vmware_target_name`:</b> None
@@ -693,6 +702,18 @@ Description: Populates an Ansible Automation Platform instance.
 <b>`aap_seed_controller_credential_types.1.inputs.fields.12.label`:</b> None
 <br>
 <b>`aap_seed_controller_credential_types.1.inputs.fields.12.type`:</b> None
+<br>
+<b>`aap_seed_controller_credential_types.1.inputs.fields.13`:</b> None
+<br>
+<b>`aap_seed_controller_credential_types.1.inputs.fields.13.id`:</b> None
+<br>
+<b>`aap_seed_controller_credential_types.1.inputs.fields.13.label`:</b> None
+<br>
+<b>`aap_seed_controller_credential_types.1.inputs.fields.13.multiline`:</b> None
+<br>
+<b>`aap_seed_controller_credential_types.1.inputs.fields.13.secret`:</b> None
+<br>
+<b>`aap_seed_controller_credential_types.1.inputs.fields.13.type`:</b> None
 <br>
 <b>`aap_seed_controller_credential_types.1.inputs.fields.2`:</b> None
 <br>

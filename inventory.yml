@@ -167,6 +167,15 @@ migration_spoke:
       #    insecureSkipTlsVerify: true
       #    mapping:
       #      create: true
+      #    esxi_hosts:
+      #      - id: host-1
+      #        password: pass1
+      #        ip: 10.10.10.123
+      #        user: root
+      #      - id: host-2
+      #        password: pass2
+      #        ip: 10.10.10.123
+      #        user: root
 
       ## Example Migration Target (uncomment to use as a baseline)
       #  - name: rhev-target-1 # Required
@@ -177,5 +186,6 @@ migration_spoke:
       #    password: changeme
       #    insecureSkipTlsVerify: true
       #    mapping:
-      #       create: true
+      #      create: true
+
 ...

@@ -186,6 +186,9 @@ Description: Management of the Migration Toolkit for Virtualization (MTV).
 | _mtv_provider_vmware ¦ Set Provider Secret Name/Namespace (Generated) | `ansible.builtin.set_fact` | False |
 | _mtv_provider_vmware ¦ Create VMware credentials secret | `redhat.openshift.k8s` | False |
 | _mtv_provider_vmware ¦ Create VMware Provider resource | `redhat.openshift.k8s` | False |
+| _mtv_provider_vmware ¦ Validate ESXi host properties | `ansible.builtin.assert` | True |
+| _mtv_provider_vmware ¦ Create VMware Host credentials secret | `redhat.openshift.k8s` | True |
+| _mtv_provider_vmware ¦ Create VMware Host resource | `redhat.openshift.k8s` | True |
 
 #### File: tasks/_mtv_storage_map.yml
 
@@ -385,7 +388,10 @@ classDef rescue stroke:#665352,stroke-width:2px;
   _mtv_provider_vmware___Set_Provider_Secret_Name_Namespace__Generated_0-->|Task| _mtv_provider_vmware___Create_VMware_credentials_secret1[ mtv provider vmware   create vmware credentials<br>secret]:::task
   _mtv_provider_vmware___Create_VMware_credentials_secret1-.->|End of Block| _mtv_provider_vmware___Configure_Provider_Secret6_block_start_0
   _mtv_provider_vmware___Create_VMware_credentials_secret1-->|Task| _mtv_provider_vmware___Create_VMware_Provider_resource7[ mtv provider vmware   create vmware provider<br>resource]:::task
-  _mtv_provider_vmware___Create_VMware_Provider_resource7-->End
+  _mtv_provider_vmware___Create_VMware_Provider_resource7-->|Task| _mtv_provider_vmware___Validate_ESXi_host_properties8[ mtv provider vmware   validate esxi host<br>properties<br>When: **mtv management populated vmware target esxi hosts<br>is defined and mtv management populated vmware<br>target esxi hosts   length   0**]:::task
+  _mtv_provider_vmware___Validate_ESXi_host_properties8-->|Task| _mtv_provider_vmware___Create_VMware_Host_credentials_secret9[ mtv provider vmware   create vmware host<br>credentials secret<br>When: **mtv management populated vmware target esxi hosts<br>is defined and mtv management populated vmware<br>target esxi hosts   length   0**]:::task
+  _mtv_provider_vmware___Create_VMware_Host_credentials_secret9-->|Task| _mtv_provider_vmware___Create_VMware_Host_resource10[ mtv provider vmware   create vmware host resource<br>When: **mtv management populated vmware target esxi hosts<br>is defined and mtv management populated vmware<br>target esxi hosts   length   0**]:::task
+  _mtv_provider_vmware___Create_VMware_Host_resource10-->End
 ```
 
 ### Graph for _mtv_storage_map.yml
