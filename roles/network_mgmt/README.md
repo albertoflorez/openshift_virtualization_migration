@@ -48,6 +48,34 @@ To use ovn-layer2 mode, set:
 network_mgmt_openshift_network_bridge_mode: ovn-layer2
 network_mgmt_ovn_topology: layer2
 ```
+
+#### MTU Configuration
+
+ovn-layer2 NADs support an optional MTU setting. You can set a global MTU that applies to all ovn-layer2 NADs, and optionally override it per NAD in manual mode.
+
+**Global MTU** (applies to all ovn-layer2 NADs unless overridden):
+
+```yaml
+network_mgmt_nad_mtu: 9000
+```
+
+**Per-NAD MTU override** (in manual mode via `network_mgmt_manual_nad_list`):
+
+```yaml
+network_mgmt_nad_mtu: 9000
+network_mgmt_manual_nad_list:
+  - name: my-network
+    namespace: default
+    portgroup: my-portgroup
+    # inherits global MTU of 9000
+  - name: my-other-network
+    namespace: default
+    portgroup: my-other-portgroup
+    mtu: 1500
+    # overrides global MTU with 1500
+```
+
+If neither `network_mgmt_nad_mtu` nor a per-NAD `mtu` is defined, no MTU is set in the NAD configuration.
 <!-- STATIC CONTENT END -->
 <!-- Everything below will be overwritten by Docsible -->
 <!-- DOCSIBLE START -->
@@ -71,12 +99,12 @@ Description: Management of network related components.
 
 | Var          | Type         | Value       |Choices    |Required    | Title       |
 |--------------|--------------|-------------|-------------|-------------|-------------|
-| [`network_mgmt_manual_bond_name`](defaults/main.yml#L95)   | str   | `` |  None  |   True  |  Bond Name in Manual Mode |
-| [`network_mgmt_manual_bridge_name`](defaults/main.yml#L100)   | str   | `vm-bridge` |  None  |   True  |  Bridge Name in Manual Mode |
-| [`network_mgmt_manual_localnet_name`](defaults/main.yml#L105)   | str   | `` |  None  |   True  |  Local Network Name in Manual Mode |
-| [`network_mgmt_manual_nad_list`](defaults/main.yml#L110)   | list   | `[]` |  None  |   True  |  NAD List in Manual Mode |
+| [`network_mgmt_manual_bond_name`](defaults/main.yml#L102)   | str   | `` |  None  |   True  |  Bond Name in Manual Mode |
+| [`network_mgmt_manual_bridge_name`](defaults/main.yml#L107)   | str   | `vm-bridge` |  None  |   True  |  Bridge Name in Manual Mode |
+| [`network_mgmt_manual_localnet_name`](defaults/main.yml#L112)   | str   | `` |  None  |   True  |  Local Network Name in Manual Mode |
+| [`network_mgmt_manual_nad_list`](defaults/main.yml#L117)   | list   | `[]` |  None  |   True  |  NAD List in Manual Mode |
 | [`network_mgmt_nad_auto_bridge_name`](defaults/main.yml#L83)   | str   | `` |  None  |   None  |  None |
-| [`network_mgmt_nad_name_prefix`](defaults/main.yml#L90)   | str   | `net-` |  None  |   True  |  NAD Name Prefix |
+| [`network_mgmt_nad_name_prefix`](defaults/main.yml#L97)   | str   | `net-` |  None  |   True  |  NAD Name Prefix |
 | [`network_mgmt_nad_namespace`](defaults/main.yml#L78)   | str   | `default` |  None  |   True  |  NAD Namespace |
 | [`network_mgmt_nncp_max_unavailable`](defaults/main.yml#L59)   | int   | `3` |  None  |   True  |  NNCP Max Unavailability |
 | [`network_mgmt_nncp_name_prefix`](defaults/main.yml#L73)   | str   | `vs-` |  None  |   True  |  NNCP Name Prefix |
