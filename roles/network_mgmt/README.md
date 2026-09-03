@@ -76,6 +76,8 @@ network_mgmt_manual_nad_list:
 ```
 
 If neither `network_mgmt_nad_mtu` nor a per-NAD `mtu` is defined, no MTU is set in the NAD configuration.
+
+MTU values must be between 68 and 9000. Invalid values will be rejected before applying changes to the cluster.
 <!-- STATIC CONTENT END -->
 <!-- Everything below will be overwritten by Docsible -->
 <!-- DOCSIBLE START -->
@@ -179,6 +181,7 @@ Description: Management of network related components.
 
 | Name | Module | Has Conditions |
 | ---- | ------ | --------- |
+| Validate global MTU range | `ansible.builtin.assert` | True |
 | Use automatic mode | `ansible.builtin.include_tasks` | True |
 | Use manual mode | `ansible.builtin.include_tasks` | True |
 
@@ -234,6 +237,7 @@ Description: Management of network related components.
 | manual ¦ Validate ovs-bridge mode | `ansible.builtin.assert` | True |
 | manual ¦ Validate linux-bridge | `ansible.builtin.assert` | True |
 | manual ¦ Validate ovn-layer2 NAD entries | `ansible.builtin.assert` | True |
+| manual ¦ Validate per-NAD MTU range | `ansible.builtin.assert` | True |
 | manual ¦ Apply NodeNetworkConfigurationPolicy | `redhat.openshift.k8s` | True |
 | manual ¦ Validate access port | `ansible.builtin.assert` | True |
 | manual ¦ Validate trunk ports | `ansible.builtin.assert` | True |
@@ -370,9 +374,10 @@ classDef importRole stroke:#699ba7,stroke-width:2px;
 classDef includeVars stroke:#8e44ad,stroke-width:2px;
 classDef rescue stroke:#665352,stroke-width:2px;
 
-  Start-->|Include task| Use_automatic_mode_automatic_yml_0[use automatic mode<br>When: **network mgmt manual nad list   default      <br>length     0**<br>include_task: automatic yml]:::includeTasks
-  Use_automatic_mode_automatic_yml_0-->|Include task| Use_manual_mode_manual_yml_1[use manual mode<br>When: **network mgmt manual nad list   default      is<br>iterable and  network mgmt manual nad list  <br>length    0**<br>include_task: manual yml]:::includeTasks
-  Use_manual_mode_manual_yml_1-->End
+  Start-->|Task| Validate_global_MTU_range0[validate global mtu range<br>When: **network mgmt nad mtu is defined**]:::task
+  Validate_global_MTU_range0-->|Include task| Use_automatic_mode_automatic_yml_1[use automatic mode<br>When: **network mgmt manual nad list   default      <br>length     0**<br>include_task: automatic yml]:::includeTasks
+  Use_automatic_mode_automatic_yml_1-->|Include task| Use_manual_mode_manual_yml_2[use manual mode<br>When: **network mgmt manual nad list   default      is<br>iterable and  network mgmt manual nad list  <br>length    0**<br>include_task: manual yml]:::includeTasks
+  Use_manual_mode_manual_yml_2-->End
 ```
 
 ### Graph for manual.yml
@@ -394,11 +399,12 @@ classDef rescue stroke:#665352,stroke-width:2px;
   manual___Validate_supported_bonding_mode_if_also_creating_bond1-->|Task| manual___Validate_ovs_bridge_mode2[manual   validate ovs bridge mode<br>When: **network mgmt openshift network bridge mode     ovs<br>bridge**]:::task
   manual___Validate_ovs_bridge_mode2-->|Task| manual___Validate_linux_bridge3[manual   validate linux bridge<br>When: **network mgmt openshift network bridge mode    <br>linux bridge**]:::task
   manual___Validate_linux_bridge3-->|Task| manual___Validate_ovn_layer2_NAD_entries4[manual   validate ovn layer2 nad entries<br>When: **network mgmt openshift network bridge mode     ovn<br>layer2**]:::task
-  manual___Validate_ovn_layer2_NAD_entries4-->|Task| manual___Apply_NodeNetworkConfigurationPolicy5[manual   apply nodenetworkconfigurationpolicy<br>When: **network mgmt manual bridge name   default      <br>length   0 and network mgmt manual bond name  <br>default       length   0 and network mgmt<br>openshift network bridge mode     linux bridge**]:::task
-  manual___Apply_NodeNetworkConfigurationPolicy5-->|Task| manual___Validate_access_port6[manual   validate access port<br>When: **network mgmt openshift network bridge mode     ovn<br>layer2  and   trunk  not in nad  or  not nad trunk<br>**]:::task
-  manual___Validate_access_port6-->|Task| manual___Validate_trunk_ports7[manual   validate trunk ports<br>When: **network mgmt openshift network bridge mode     ovn<br>layer2  and  trunk  in nad and nad trunk**]:::task
-  manual___Validate_trunk_ports7-->|Task| manual___Apply_NetworkAttachmentDefinitions8[manual   apply networkattachmentdefinitions]:::task
-  manual___Apply_NetworkAttachmentDefinitions8-->End
+  manual___Validate_ovn_layer2_NAD_entries4-->|Task| manual___Validate_per_NAD_MTU_range5[manual   validate per nad mtu range<br>When: **network mgmt openshift network bridge mode     ovn<br>layer2  and nad mtu is defined**]:::task
+  manual___Validate_per_NAD_MTU_range5-->|Task| manual___Apply_NodeNetworkConfigurationPolicy6[manual   apply nodenetworkconfigurationpolicy<br>When: **network mgmt manual bridge name   default      <br>length   0 and network mgmt manual bond name  <br>default       length   0 and network mgmt<br>openshift network bridge mode     linux bridge**]:::task
+  manual___Apply_NodeNetworkConfigurationPolicy6-->|Task| manual___Validate_access_port7[manual   validate access port<br>When: **network mgmt openshift network bridge mode     ovn<br>layer2  and   trunk  not in nad  or  not nad trunk<br>**]:::task
+  manual___Validate_access_port7-->|Task| manual___Validate_trunk_ports8[manual   validate trunk ports<br>When: **network mgmt openshift network bridge mode     ovn<br>layer2  and  trunk  in nad and nad trunk**]:::task
+  manual___Validate_trunk_ports8-->|Task| manual___Apply_NetworkAttachmentDefinitions9[manual   apply networkattachmentdefinitions]:::task
+  manual___Apply_NetworkAttachmentDefinitions9-->End
 ```
 
 ## Playbook
